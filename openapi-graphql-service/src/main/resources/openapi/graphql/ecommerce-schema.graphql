@@ -1,0 +1,29 @@
+schema {
+  query: QueryPlaceholder
+  mutation: Mutation
+}
+
+"""Placeholder object"""
+type QueryPlaceholder {
+  """Placeholder field"""
+  message: String
+}
+
+type Mutation {
+  """
+  Get weather information by location
+  
+  Equivalent to POST /weather/location
+  """
+  weatherByLocation(locationInput: LocationInput!): WeatherByLocationResponse
+}
+
+type WeatherByLocationResponse {
+  conditions: String
+  temperature: Float
+}
+
+input LocationInput {
+  latitude: Float
+  longitude: Float
+}

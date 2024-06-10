@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.5</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    
+    <groupId>org.cometbid.openapi.code</groupId>
+    <artifactId>${serviceName}-reactive-api</artifactId>
+    <version>${revision}</version>
+    <name>${serviceName}-reactive-openapi</name>
+    <description>generic service client api</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <java.version>17</java.version>
+        <packaging>jar</packaging>
+        
+        <!-- Update to reflect the current version -->
+        <revision.prefix>0.0.1</revision.prefix>
+        
+        <!-- Unique identifier for your service: change to suite your service -->
+        <serviceKey>generic</serviceKey>
+        <remoteServiceKey>remote</remoteServiceKey>
+        
+        <!-- Microservice name: Change this to match the service being generated for -->
+        <serviceName>generic-service</serviceName>
+        <remoteServiceName>remote-service-name</remoteServiceName>
+        
+        <!-- OpenAPI spec yml file location(local or remote) -->
+        <service-server-Url>${project.basedir}/src/main/resources/openapi/api.yml</service-server-Url>
+        <service-client-Url>${project.basedir}/src/main/resources/openapi/client.yml</service-client-Url>
+        <!--<remote-serviceUrl>http://localhost:8080/demo-service</remote-serviceUrl> -->
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-hateoas</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+        <!-- Optional dependency only for Mac users -->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-resolver-dns-native-macos</artifactId>
+            <classifier>osx-aarch_64</classifier>
+        </dependency>
+        <!--/ Optional dependency only for Mac users -->
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>jackson-databind-nullable</artifactId>
+            <version>0.2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>2.2.8</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        
+        <!--
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>4.11.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.okio</groupId>
+            <artifactId>okio</artifactId>
+            <version>1.15.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>logging-interceptor</artifactId>
+            <version>4.11.0</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+        -->
+        <dependency>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.gsonfire</groupId>
+            <artifactId>gson-fire</artifactId>
+            <version>1.8.5</version>
+        </dependency>
+        <!--
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20230227</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>openapi-generator-maven-plugin</artifactId>
+            <version>6.6.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>openapi-generator</artifactId>
+            <version>6.6.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <!-- RELEASE_VERSION -->
+                <version>7.5.0</version>
+                <!-- /RELEASE_VERSION -->
+                <executions>
+                    <execution>
+                        <id>${remoteServiceName}-client-stub</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${service-client-Url}</inputSpec>
+                            <generatorName>java</generatorName>
+                            <generateApis>true</generateApis>
+                            <generateModels>true</generateModels>
+                            <generateApiTests>false</generateApiTests>
+                            <generateModelTests>false</generateModelTests>
+                                                                                  
+                            <configOptions>
+                                <apiPackage>org.cometbid.openapi.codegen.${remoteServiceKey}.client</apiPackage>
+                                <modelPackage>org.cometbid.openapi.codegen.${remoteServiceKey}.client.model</modelPackage>
+                                <output>${project.basedir}/target/generated-sources/openapi</output>
+                                
+                                <serializableModel>true</serializableModel>
+                                <interfaceOnly>true</interfaceOnly>
+                                <delegatePattern>true</delegatePattern>
+                                <openApiNullable>false</openApiNullable>
+                                <enumUnknownDefaultCase>true</enumUnknownDefaultCase>
+                                <enumPropertyNaming>UPPERCASE</enumPropertyNaming>
+                                
+                                <useBeanValidation>true</useBeanValidation>
+                                <dateLibrary>java8-localdatetime</dateLibrary>
+                                <delegatePattern>true</delegatePattern>
+                                <useSpringBoot3>true</useSpringBoot3>
+                                <useJakartaEe>true</useJakartaEe>
+                                
+                                <hateoas>true</hateoas> 
+                                <library>webclient</library>                               
+                                <reactive>true</reactive>                                                                                            
+                                <useTags>true</useTags>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>${serviceName}-server-stub</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${service-server-Url}</inputSpec>
+                            <generatorName>spring</generatorName>
+                            <generateApis>true</generateApis>
+                            <generateModels>true</generateModels>
+                            <generateApiTests>false</generateApiTests>
+                            <generateModelTests>false</generateModelTests>
+                            <generateSupportingFiles>true</generateSupportingFiles>
+                            <generateAliasAsModel>true</generateAliasAsModel>
+                                                                                    
+                            <configOptions>
+                                <modelPackage>org.cometbid.openapi.codegen.${serviceKey}.api.model</modelPackage>
+                                <apiPackage>org.cometbid.openapi.codegen.${serviceKey}.api</apiPackage>
+                                <output>${project.basedir}/target/generated-sources/openapi</output>
+                                <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
+                                
+                                <serializableModel>true</serializableModel>
+                                <interfaceOnly>true</interfaceOnly>
+                                <delegatePattern>true</delegatePattern>
+                                <openApiNullable>false</openApiNullable>
+                                <enumUnknownDefaultCase>true</enumUnknownDefaultCase>
+                                <enumPropertyNaming>UPPERCASE</enumPropertyNaming>
+
+                                <useBeanValidation>true</useBeanValidation>
+                                <dateLibrary>java8-localdatetime</dateLibrary>
+                                <delegatePattern>true</delegatePattern>
+                                <useSpringBoot3>true</useSpringBoot3>
+                                <useJakartaEe>true</useJakartaEe>
+                                
+                                <hateoas>true</hateoas>                                
+                                <reactive>true</reactive>
+                                <library>spring-boot</library>
+                                <useTags>true</useTags>                             
+                                <!--
+                                <additionalModelTypeAnnotations>
+                                    @lombok.Builder(toBuilder=true)
+                                    @lombok.NoArgsConstructor
+                                    @lombok.AllArgsConstructor
+                                </additionalModelTypeAnnotations>
+                                -->
+                            </configOptions>
+                            <typeMappings>
+                                <typeMapping>OffsetDateTime=java.time.OffsetDateTime</typeMapping>
+                                <typeMapping>ZonedDateTime=java.time.ZonedDateTime</typeMapping>
+                                <typeMapping>LocalDateTime=java.time.LocalDateTime</typeMapping>
+                                <typeMapping>BigDecimal=java.math.BigDecimal</typeMapping>
+                                <typeMapping>DateTime=Instant</typeMapping>
+                                <typeMapping>Date=LocalDate</typeMapping>
+                                <typeMapping>Timestamp=LocalDateTime</typeMapping>
+                                <typeMapping>AppResponse=org.cometbid.component.api.response.AppResponse</typeMapping>
+                            </typeMappings>
+                            <importMappings>
+                                <importMapping>Instant=java.time.Instant</importMapping>
+                                <importMapping>LocalDate=java.time.LocalDate</importMapping>
+                                <importMapping>LocalDateTime=java.time.LocalDateTime</importMapping>
+                            </importMappings>
+                            <globalProperties>
+                                <skipFormModel>false</skipFormModel>
+                            </globalProperties>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>generate-axios-client</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${service-server-Url}</inputSpec>
+                            <generatorName>typescript-axios</generatorName>
+                            <output>${project.basedir}/target/generated-sources/openapi/frontend/typescript-axios-package</output>
+                            <configOptions>
+                                <title>frontend</title>
+                                <hateoas>true</hateoas>                                
+                                <reactive>true</reactive>
+                                
+                                <npmName>@cometbidsfi/${serviceKey}</npmName>
+                                <npmVersion>${project.version}</npmVersion>
+                                <npmRepository>https://npm.pkg.github.com</npmRepository>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <revision>${revision.prefix}-DEV</revision>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <revision>${revision.prefix}-TEST</revision>
+            </properties>
+        </profile>
+        <profile>
+            <id>preprod</id>
+            <properties>
+                <revision>${revision.prefix}-RELEASE</revision>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <revision>${revision.prefix}</revision>
+            </properties>
+        </profile>
+    </profiles>
+
+</project>

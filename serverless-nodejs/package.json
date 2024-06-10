@@ -1,0 +1,19 @@
+{
+  "name": "helloworld-api",
+  "version": "1.0.0",
+  "main": "api.js",
+  "scripts": {
+    "update": "claudia update --version dev --profile app-dev --role node-lambda-api-role",
+    "deploy": "claudia create --version dev --region us-east-1 --profile app-dev --handler api.handler --role node-lambda-api-role --runtime nodejs20.x",
+    "release": "claudia set-version --version production",
+    "test": "claudia test-lambda --event event.json",
+    "start": "ntl"
+  },
+  "author": "Samuel Adebowale",
+  "license": "MIT",
+  "description": "",
+  "devDependencies": {
+    "claudia": "5.14.1",
+    "ntl": "5.1.0"
+  }
+}

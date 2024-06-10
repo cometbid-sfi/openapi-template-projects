@@ -1,0 +1,23 @@
+{
+  "name": "graphql-mesh-federation",
+  "version": "1.0.0",
+  "description": "A project based graphql-mesh library for proxying api-server into graphql-api-server",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "keywords": [
+    "graphql",
+    "graphql-mesh",
+    "api",
+    "proxy"
+  ],
+  "author": "Adebowale Samuel",
+  "license": "MIT ",
+  "dependencies": {
+    "@graphql-mesh/cli": "0.90.9",
+    "@graphql-mesh/openapi": "0.100.11",
+    "@graphql-mesh/runtime": "0.99.7",
+    "graphql": "16.8.1"
+  }
+}

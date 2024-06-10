@@ -1,0 +1,9 @@
+sources:
+  - name: Weatherbit.io
+    handler:
+      openapi:
+        source: https://www.weatherbit.io/static/swagger.json
+  - name: Github
+    handler:
+      openapi:
+        source: https://api.apis.guru/v2/specs/github.com/ghes-2.19/1.1.4/openapi.yaml

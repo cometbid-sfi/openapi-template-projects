@@ -1,0 +1,29 @@
+{
+  "name": "pizza-api",
+  "version": "1.0.0",
+  "main": "api.js",
+  "scripts": {
+    "create": "claudia create --version dev --region us-east-1 --profile app-dev --api-module api --role node-lambda-api-role --runtime nodejs20.x",
+    "update": "claudia update --version dev --profile app-dev --role node-lambda-api-role",
+    "release": "claudia set-version --version production",
+    "test": "claudia test-lambda",
+    "start": "ntl"
+  },
+  "keywords": [
+    "lambda",
+    "aws",
+    "nodejs",
+    "javascript"
+  ],
+  "author": "Samuel Adebowale",
+  "license": "MIT",
+  "description": "A pizza API, an example app from \"Serverless applications with claudia.js\"",
+  "dependencies": {
+    "aws-sdk": "2.1637.0",
+    "claudia-api-builder": "4.1.2"
+  },
+  "devDependencies": {
+    "claudia": "5.14.1",
+    "ntl": "5.1.0"
+  }
+}
